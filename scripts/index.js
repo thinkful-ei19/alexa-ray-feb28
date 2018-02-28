@@ -4,11 +4,18 @@
 
 $(document).ready(function() {
   shoppingList.bindEventListeners();
-  shoppingList.render();
   api.getItems((items) => {
     items.forEach((item) => store.addItem(item));
     shoppingList.render();
   });
+});
+
+api.getItems((items) => {
+  items.forEach((item) => store.addItem(item));
+  const item = store.items[0];
+  console.log('current name: ' + item.name);
+  store.findAndUpdate(item.id, { name: 'foobar' });
+  console.log('new name: ' + item.name);
 });
 
 // store.items.push(Item.create('apples'));
@@ -37,7 +44,9 @@ $(document).ready(function() {
 // api.getItems((items) => {
 //   const item = items[0];
 
-//   api.updateItem(item.id, { name: 'foobar' }, () => {
-//     console.log('updated!');
-//   });
+//   console.log(`This is ${item}`);
+//   // api.updateItem(item.id, { name: 'foobar' }, () => {
+//   //   console.log('updated!');
+//   // });
 // });
+

@@ -27,12 +27,13 @@ const api = (function () {
       success: callback
     });
   };
+  
 
 
   return {
     getItems,
     createItem,
-    updateItem
+    updateItem,
   };
 
 }());
