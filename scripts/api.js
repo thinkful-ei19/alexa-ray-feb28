@@ -27,13 +27,22 @@ const api = (function () {
       success: callback
     });
   };
-  
+  const deleteItem = function(id, callback) {
+    $.ajax({
+        url: `${BASE_URL}/items/${id}`,
+        method: 'DELETE',
+        contentType: 'application/json',
+        dataType: 'json',
+        sucess: callback
+    });  
+  }
 
 
   return {
     getItems,
     createItem,
     updateItem,
+    deleteItem
   };
 
 }());

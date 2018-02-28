@@ -86,12 +86,17 @@ const shoppingList = (function(){
   function handleDeleteItemClicked() {
     // like in `handleItemCheckClicked`, we use event delegation
     $('.js-shopping-list').on('click', '.js-item-delete', event => {
+      console.log('I clicked the delete button');
       // get the index of the item in store.items
       const id = getItemIdFromElement(event.currentTarget);
+      console.log(id);
       // delete the item
       store.findAndDelete(id);
       // render the updated shopping list
-      render();
+      api.deleteItem(id, () => {
+      store.findAndDelete(id);
+      // this.render();
+      });
     });
   }
   
