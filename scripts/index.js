@@ -1,3 +1,5 @@
+'use strict'
+
 /* global shoppingList, store, api */
 
 $(document).ready(function() {
@@ -14,3 +16,8 @@ api.getItems(function(data) {
 
 console.log(api.BASE_URL);
 
+api.createItem('pears', (newItem) => {
+  api.getItems((items) => {
+    console.log(items);
+  });
+});
